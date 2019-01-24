@@ -25,22 +25,26 @@
         class="uk-width-large-1-3 uk-width-medium-1-2 uk-margin-bottom"
         v-for="result in response.results"
         :key="result.id"
-       >
+      >
         <a href="#" class="integration-result" @click.prevent="selectItem(result)">
           <IntegrationItem :item="result" :current="current"></IntegrationItem>
         </a>
       </div>
     </div>
-    <IntegrationPagination :page=page :totalPages=totalPages :loadPages=loadPages :loading=loading></IntegrationPagination>
+    <IntegrationPagination
+      :page="page"
+      :totalPages="totalPages"
+      :loadPages="loadPages"
+      :loading="loading"
+    ></IntegrationPagination>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import debounce from 'debounce'
-import IntegrationItem from './IntegrationItem'
-import IntegrationPagination from './IntegrationPagination'
-
+import axios from "axios";
+import debounce from "debounce";
+import IntegrationItem from "./IntegrationItem";
+import IntegrationPagination from "./IntegrationPagination";
 
 export default {
   props: {
@@ -51,7 +55,7 @@ export default {
   },
   data() {
     return {
-      search_term: '',
+      search_term: "",
       per_page: 50,
       page: 1,
       response: {
@@ -59,59 +63,59 @@ export default {
         results: []
       },
       loading: true
-    }
+    };
   },
   computed: {
     totalPages() {
       return this.response.results_size != 0
         ? Math.ceil(this.response.results_size / this.per_page)
-        : 1
+        : 1;
     },
     requestOptions() {
-      let config = { params: { page: this.page, per_page: this.per_page } }
+      let config = { params: { page: this.page, per_page: this.per_page } };
       if (this.search_term.length > 0) {
-        config.params.search = this.search_term
+        config.params.search = this.search_term;
       }
-      if (typeof this.options.token !== 'undefined') {
+      if (typeof this.options.token !== "undefined") {
         config.auth = {
           username: this.options.token
-        }
+        };
       }
-      return config
+      return config;
     }
   },
   created() {
-    this.load()
+    this.load();
   },
   methods: {
     debouncedSearch: debounce(function() {
-      this.search()
+      this.search();
     }, 300),
     search() {
-      this.page = 1
-      this.load()
+      this.page = 1;
+      this.load();
     },
     load() {
-      this.loading = true
+      this.loading = true;
       axios.get(this.options.endpoint, this.requestOptions).then(res => {
-        this.response = res.data
-        this.loading = false
-      })
+        this.response = res.data;
+        this.loading = false;
+      });
     },
     selectItem(item) {
-      this.select(item)
-      this.close()
+      this.select(item);
+      this.close();
     },
     loadPage(page) {
-      this.page = page
-      this.load()
+      this.page = page;
+      this.load();
     }
   },
   components: {
     IntegrationItem,
     IntegrationPagination
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -130,19 +134,27 @@ export default {
 }
 
 @-webkit-keyframes sk-rotateplane {
-  0% { -webkit-transform: perspective(120px) }
-  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
-  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+  0% {
+    -webkit-transform: perspective(120px);
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateY(180deg);
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg);
+  }
 }
 
 @keyframes sk-rotateplane {
-  0% { 
+  0% {
     transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
-  } 50% { 
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
     transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
-  } 100% { 
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+  100% {
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }

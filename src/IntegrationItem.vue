@@ -1,7 +1,7 @@
 <template>
   <div class="integration-item" v-bind:class="{ 'integration-item--selected': selected }">
     <div class="integration-item__left">
-      <img :src=item.image_url class="integration-item__image">
+      <img :src="item.image_url" class="integration-item__image">
     </div>
     <div class="integration-item__right">
       <div class="uk-form-text-label">{{item.title}}</div>
@@ -18,26 +18,30 @@ export default {
   },
   computed: {
     selected() {
-      if (typeof this.current === 'undefined'||this.current == null) return false
-      return this.current.id == this.item.id
+      if (typeof this.current === "undefined" || this.current == null)
+        return false;
+      return this.current.id == this.item.id;
     }
   },
   methods: {
     truncate(string) {
-      let maxLength = 50
-      if(string.length <= maxLength) {
-        return string
+      let maxLength = 50;
+      if (string.length <= maxLength) {
+        return string;
       }
 
-      let trimmed = string.substring(0, Math.min(maxLength, string.length))
-      trimmed = trimmed.substr(0, Math.min(trimmed.length, trimmed.lastIndexOf(' ')))
-      return `${trimmed}...`
+      let trimmed = string.substring(0, Math.min(maxLength, string.length));
+      trimmed = trimmed.substr(
+        0,
+        Math.min(trimmed.length, trimmed.lastIndexOf(" "))
+      );
+      return `${trimmed}...`;
     }
   }
-}
+};
 </script>
 
-<style lang="scss"> 
+<style lang="scss">
 .integration-item {
   border: 1px solid #ddd;
   padding: 10px;

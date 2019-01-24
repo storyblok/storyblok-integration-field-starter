@@ -42,6 +42,7 @@ Below you can find the response object expected by this custom field type. With 
 
 ## Attached Query Params
 
+| Parameter | Description |
 |----|----|
 | `per_page` | How many results should be returned per page (Default: 50) |
 | `page` | Which page is requested (Default: 1) |
@@ -54,6 +55,7 @@ Below you can find the response object expected by this custom field type. With 
 
 ## The Response Object
 
+| Property | Description |
 |----|----|
 | `results_size` | Total amount of results, used to generate pagination. |
 | `results` | Actual results. By default this starter kit uses 50 `per_page`. |
@@ -69,6 +71,7 @@ Below you can find the response object expected by this custom field type. With 
 
 ## The Integration Object 
 
+| Property | Description |
 |----|----|
 | `id` | id of your result |
 | `title` | Title that should be shown to the editor during selection |

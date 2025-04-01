@@ -1,3 +1,18 @@
+> **⚠️ DEPRECATION NOTICE ⚠️**
+>
+> This package (`storyblok-integration-field-starter`) is **deprecated** and no longer actively maintained.
+>
+> Please use the new official SDK, **`@storyblok/field-plugin`**, for developing custom field plugins for Storyblok. The new SDK offers a more robust, framework-agnostic approach and is the standard going forward.
+>
+> *  **➡️ New projects should use `@storyblok/field-plugin`.**
+> *  **➡️ Existing projects should migrate.**
+>
+> Find the new SDK here:
+> *   **GitHub:** [https://github.com/storyblok/field-plugin](https://github.com/storyblok/field-plugin)
+> *   **Documentation:** [https://www.storyblok.com/docs/packages/storyblok-field-plugin](https://www.storyblok.com/docs/packages/storyblok-field-plugin)
+>
+> Thank you for your understanding.
+
 # Storyblok Integration Field Starter
 
 > Custom integration field type plugin starter kit; Use this starter kit to make your external APIs available in Storyblok if multi-option and single-option are not enough.
